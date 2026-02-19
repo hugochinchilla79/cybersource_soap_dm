@@ -1,0 +1,4 @@
+examples/*
+.env
+.env.prod
+.claude
