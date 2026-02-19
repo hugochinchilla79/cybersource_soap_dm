@@ -12,7 +12,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/hugochinchilla79/cybersource_soap_dm_sdk/models"
+	"github.com/hugochinchilla79/cybersource_soap_dm/models"
 )
 
 // Client interacts with the CyberSource Decision Manager SOAP API.

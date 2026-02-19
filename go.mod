@@ -1,4 +1,4 @@
-module github.com/hugochinchilla79/cybersource_soap_dm_sdk
+module github.com/hugochinchilla79/cybersource_soap_dm
 
 go 1.23.0
 
