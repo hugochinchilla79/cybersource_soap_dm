@@ -128,12 +128,14 @@ type soapAFSReply struct {
 	ReasonCode      int    `xml:"reasonCode"`
 	AFSResult       string `xml:"afsResult"`
 	HostSeverity    string `xml:"hostSeverity"`
-	AFSFactorCode   string `xml:"afsFactorCode"`
-	AddressInfoCode string `xml:"addressInfoCode"`
-	IPCountry       string `xml:"ipCountry"`
-	IPState         string `xml:"ipState"`
-	IPCity          string `xml:"ipCity"`
-	ScoreModelUsed  string `xml:"scoreModelUsed"`
+	AFSFactorCode      string `xml:"afsFactorCode"`
+	AddressInfoCode    string `xml:"addressInfoCode"`
+	SuspiciousInfoCode string `xml:"suspiciousInfoCode"`
+	IPCountry          string `xml:"ipCountry"`
+	IPState            string `xml:"ipState"`
+	IPCity             string `xml:"ipCity"`
+	IPRoutingMethod    string `xml:"ipRoutingMethod"`
+	ScoreModelUsed     string `xml:"scoreModelUsed"`
 	BinCountry      string `xml:"binCountry"`
 	CardScheme      string `xml:"cardScheme"`
 	CardIssuer      string `xml:"cardIssuer"`

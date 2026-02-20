@@ -2,3 +2,4 @@ examples/*
 .env
 .env.prod
 .claude
+client_test.go

@@ -86,6 +86,9 @@ func (c *Client) AnalyzeRisk(ctx context.Context, req models.RiskAnalysisRequest
 	defer resp.Body.Close()
 
 	respBody, err := io.ReadAll(resp.Body)
+
+	fmt.Printf("Body Response %s", respBody)
+
 	if err != nil {
 		return models.RiskAnalysisAPIResponse{}, fmt.Errorf("cybersource_soap_dm: read response: %w", err)
 	}
@@ -102,13 +105,13 @@ func (c *Client) AnalyzeRisk(ctx context.Context, req models.RiskAnalysisRequest
 	// Check for SOAP fault
 	if soapResp.Body.Fault != nil {
 		return models.RiskAnalysisAPIResponse{
-			HTTPStatus: resp.StatusCode,
-			Body:       respBody,
-		}, &SOAPFault{
-			FaultCode:   soapResp.Body.Fault.FaultCode,
-			FaultString: strings.TrimSpace(soapResp.Body.Fault.FaultString),
-			RawBody:     respBody,
-		}
+				HTTPStatus: resp.StatusCode,
+				Body:       respBody,
+			}, &SOAPFault{
+				FaultCode:   soapResp.Body.Fault.FaultCode,
+				FaultString: strings.TrimSpace(soapResp.Body.Fault.FaultString),
+				RawBody:     respBody,
+			}
 	}
 
 	reply := soapResp.Body.ReplyMessage
@@ -123,18 +126,20 @@ func (c *Client) AnalyzeRisk(ctx context.Context, req models.RiskAnalysisRequest
 
 	if reply.AFSReply != nil {
 		result.AFSReply = &models.AFSReply{
-			ReasonCode:      reply.AFSReply.ReasonCode,
-			AFSResult:       reply.AFSReply.AFSResult,
-			HostSeverity:    reply.AFSReply.HostSeverity,
-			AFSFactorCode:   reply.AFSReply.AFSFactorCode,
-			AddressInfoCode: reply.AFSReply.AddressInfoCode,
-			IPCountry:       reply.AFSReply.IPCountry,
-			IPState:         reply.AFSReply.IPState,
-			IPCity:          reply.AFSReply.IPCity,
-			ScoreModelUsed:  reply.AFSReply.ScoreModelUsed,
-			BinCountry:      reply.AFSReply.BinCountry,
-			CardScheme:      reply.AFSReply.CardScheme,
-			CardIssuer:      reply.AFSReply.CardIssuer,
+			ReasonCode:         reply.AFSReply.ReasonCode,
+			AFSResult:          reply.AFSReply.AFSResult,
+			HostSeverity:       reply.AFSReply.HostSeverity,
+			AFSFactorCode:      reply.AFSReply.AFSFactorCode,
+			AddressInfoCode:    reply.AFSReply.AddressInfoCode,
+			SuspiciousInfoCode: reply.AFSReply.SuspiciousInfoCode,
+			IPCountry:          reply.AFSReply.IPCountry,
+			IPState:            reply.AFSReply.IPState,
+			IPCity:             reply.AFSReply.IPCity,
+			IPRoutingMethod:    reply.AFSReply.IPRoutingMethod,
+			ScoreModelUsed:     reply.AFSReply.ScoreModelUsed,
+			BinCountry:         reply.AFSReply.BinCountry,
+			CardScheme:         reply.AFSReply.CardScheme,
+			CardIssuer:         reply.AFSReply.CardIssuer,
 		}
 	}
 

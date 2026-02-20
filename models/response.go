@@ -40,12 +40,14 @@ type AFSReply struct {
 	ReasonCode      int
 	AFSResult       string // Numeric score as string
 	HostSeverity    string
-	AFSFactorCode   string // Risk factor codes separated by "^"
-	AddressInfoCode string
-	IPCountry       string
-	IPState         string
-	IPCity          string
-	ScoreModelUsed  string
+	AFSFactorCode      string // Risk factor codes separated by "^"
+	AddressInfoCode    string
+	SuspiciousInfoCode string
+	IPCountry          string
+	IPState            string
+	IPCity             string
+	IPRoutingMethod    string
+	ScoreModelUsed     string
 	BinCountry      string
 	CardScheme      string
 	CardIssuer      string
